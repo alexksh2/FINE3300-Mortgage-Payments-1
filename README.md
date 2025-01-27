@@ -20,6 +20,12 @@ __Official Submission for FINE3300 Assignment 1: Assignment1_Basic.py__
 
 <br>
 
+<br>
+
+__Link to GitHub Report: https://github.com/alexksh2/FINE3300-Mortgage-Payments-1.git
+
+<br>
+
 ## Sample Image
 
 

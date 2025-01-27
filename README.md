@@ -1,7 +1,5 @@
 # FINE3300-Mortgage-Payments-1
 
-# FINE3300-Mortgage-Payments
-
 The FINE3300 Mortgage Payments project aims to develop a software to __calculate the mortgage payment for each period__ with a certain principal amount, quoted interest rate (as a
 percent, for example, 4.85), and the amortization period in years.
 <br>

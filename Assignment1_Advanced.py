@@ -1,6 +1,41 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+# Use a pipeline as a high-level helper
+
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from groq import Groq
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
+
+def printing_output():
+    client = Groq(api_key=API_KEY)
+    completion = client.chat.completions.create(
+        model="deepseek-r1-distill-llama-70b",
+        messages=[{
+            'role':'user',
+            'content':'State three benefits and losses of having higher frequency payment for loan payment. Just provide me the answer dont give me your reasoning or I will sack you!!!!  Explain in a third person narrative and give three bullet points.'}],
+        temperature=0.6,
+        max_completion_tokens=4096,
+        top_p=0.95,
+        stream=True,
+        stop=None,
+    )
+    
+    full_response = ""
+    for chunk in completion:
+        content = chunk.choices[0].delta.content or ""
+        full_response += content
+
+    return full_response
+
+
+
 
 def mortgage_payments(principal, rate, amortization):
     # Calculate the total number of periods for each case using amortization (in years)
@@ -35,7 +70,7 @@ def mortgage_payments(principal, rate, amortization):
 
 # Streamlit App
 st.title("Welcome to Mortgage Payment Calculator")
-
+            
 # User Inputs on SideBar
 st.sidebar.header("Input Parameters")
 principal = st.sidebar.number_input("Loan Amount (Principal)", value=100000, step=1000)
@@ -114,3 +149,12 @@ fig.update_layout(
 
 # Display the chart in Streamlit
 st.plotly_chart(fig)
+
+
+st.header("Financial Advice by DeepSeek Model")
+
+st.markdown(f"""
+                <div style="padding:15px; border-radius:5px;">
+                    <p style="font-size: 16px; ">{printing_output()}</p>
+                </div>
+            """, unsafe_allow_html=True)

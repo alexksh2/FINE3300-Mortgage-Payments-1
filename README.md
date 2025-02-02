@@ -56,12 +56,11 @@ To run the project, use the following commands in your terminal:
 # Clone the repository
 git clone https://github.com/alexksh2/FINE3300-Mortgage-Payments.git
 
-# Create a virtual environment
-poetry shell
-
-
 # Navigate to the project directory
 cd repository
+
+# Create a virtual environment
+poetry shell
 
 # Run the Streamlit Application
 streamlit run Assignment1_Advanced.py
